@@ -1,4 +1,4 @@
-package com.flyhigh.reservation.order.Controllers;
+package com.flyhigh.reservation.order.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flyhigh.reservation.order.bases.TestBase;

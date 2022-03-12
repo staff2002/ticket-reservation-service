@@ -1,7 +1,7 @@
 package com.flyhigh.reservation.order.bases;
 
 import com.flyhigh.reservation.order.TicketReservationApplication;
-import com.flyhigh.reservation.order.Extension.MariaDB4jExtension;
+import com.flyhigh.reservation.order.extension.MariaDB4jExtension;
 import com.flyhigh.reservation.order.SpringApplicationContext;
 import com.flyhigh.reservation.order.TruncateDatabaseService;
 import org.junit.jupiter.api.BeforeEach;

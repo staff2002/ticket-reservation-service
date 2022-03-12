@@ -1,4 +1,4 @@
-package com.flyhigh.reservation.order.Extension;
+package com.flyhigh.reservation.order.extension;
 
 import ch.vorburger.mariadb4j.DBConfigurationBuilder;
 import ch.vorburger.mariadb4j.springframework.MariaDB4jSpringService;

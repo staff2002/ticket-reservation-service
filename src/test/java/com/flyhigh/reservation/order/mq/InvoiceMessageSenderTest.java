@@ -1,7 +1,6 @@
-package com.flyhigh.reservation.order.MQ;
+package com.flyhigh.reservation.order.mq;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flyhigh.reservation.order.mq.InvoiceMessageSender;
 import com.flyhigh.reservation.order.mq.messages.InvoiceMessage;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

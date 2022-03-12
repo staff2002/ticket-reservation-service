@@ -1,7 +1,6 @@
 package com.flyhigh.reservation.order.mq;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flyhigh.reservation.order.MQ.RabbitMqConfig;
 import com.flyhigh.reservation.order.mq.messages.InvoiceMessage;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

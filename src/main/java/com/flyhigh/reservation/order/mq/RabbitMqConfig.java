@@ -1,4 +1,4 @@
-package com.flyhigh.reservation.order.MQ;
+package com.flyhigh.reservation.order.mq;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
