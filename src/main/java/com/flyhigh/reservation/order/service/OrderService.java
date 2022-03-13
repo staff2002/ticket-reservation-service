@@ -38,7 +38,7 @@ public class OrderService {
 
         FlightChangeResponseFeignDto flightChangeResponseFeignDto = flightPriceSeatCalculationFeign.changeSeat(flightChangeRequestFeignDto);
 
-        if (!flightChangeResponseFeignDto.getStatus().equals(FlightChangeStatus.SUCCESS) && flightChangeResponseFeignDto.getCode().equals(FlightChangeCode.NO_SEAT)) {
+        if (isNotEnoughSeat(flightChangeResponseFeignDto)) {
             throw new NotEnoughSeatException();
         }
 
@@ -48,6 +48,11 @@ public class OrderService {
         orderRepository.save(order);
 
         return FlightChangeResultModel.builder().changedFlightId(flightChangeModel.getTargetFlightId()).build();
+    }
+
+    private boolean isNotEnoughSeat(FlightChangeResponseFeignDto flightChangeResponseFeignDto) {
+        return flightChangeResponseFeignDto.getStatus() != FlightChangeStatus.SUCCESS &&
+                flightChangeResponseFeignDto.getCode().equals(FlightChangeCode.NO_SEAT);
     }
 
     @Transactional
@@ -68,7 +73,10 @@ public class OrderService {
     }
 
     private InvoiceMessage getInvoiceMessage(InvoiceModel invoiceModel, OrderEntity order) {
-        InvoiceMessage invoiceMessage = InvoiceMessage.builder().invoiceTitle(invoiceModel.getTitle()).amount(order.getAmount()).email(invoiceModel.getEmail()).build();
+        InvoiceMessage invoiceMessage = InvoiceMessage.builder()
+                .invoiceTitle(invoiceModel.getTitle())
+                .amount(order.getAmount())
+                .email(invoiceModel.getEmail()).build();
         return invoiceMessage;
     }
 
