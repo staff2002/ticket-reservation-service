@@ -15,9 +15,9 @@ class InvoiceMessageSenderTest {
     @Test
     public void should_return_true_given_send_message_success() {
 
-        RabbitTemplate stubTabbitTemplate = Mockito.mock(RabbitTemplate.class);
+        RabbitTemplate stuRabbitTemplate = Mockito.mock(RabbitTemplate.class);
         ObjectMapper objectMapper = new ObjectMapper();
-        InvoiceMessageSender invoiceMessageSender = new InvoiceMessageSender(objectMapper, stubTabbitTemplate);
+        InvoiceMessageSender invoiceMessageSender = new InvoiceMessageSender(objectMapper, stuRabbitTemplate);
 
         boolean result = invoiceMessageSender.send(InvoiceMessage.builder()
                         .invoiceTitle("李四")
