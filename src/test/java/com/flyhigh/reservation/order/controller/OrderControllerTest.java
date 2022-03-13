@@ -48,7 +48,6 @@ class OrderControllerTest extends TestBase {
         FlightChangeRequestDto request = FlightChangeRequestDto.builder().targetFlightId(2L).build();
         String requestJson = objectMapper.writeValueAsString(request);
 
-
         mockMvc.perform(post("/orders/1/flights/1/change")
                 .content(requestJson)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -63,7 +62,6 @@ class OrderControllerTest extends TestBase {
         FlightChangeRequestDto request = FlightChangeRequestDto.builder().targetFlightId(2L).build();
         String requestJson = objectMapper.writeValueAsString(request);
 
-
         mockMvc.perform(post("/orders/1/flights/1/change")
                         .content(requestJson)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -74,12 +72,10 @@ class OrderControllerTest extends TestBase {
 
     @Test
     public void should_change_flight_fail_given_price_seat_calculation_system_not_available() throws Exception {
-        Mockito.when(orderService.change(any()))
-                .thenThrow(new TimeoutException());
+        Mockito.when(orderService.change(any())).thenThrow(new TimeoutException());
 
         FlightChangeRequestDto request = FlightChangeRequestDto.builder().targetFlightId(2L).build();
         String requestJson = objectMapper.writeValueAsString(request);
-
 
         mockMvc.perform(post("/orders/1/flights/1/change")
                         .content(requestJson)
@@ -95,7 +91,6 @@ class OrderControllerTest extends TestBase {
                 .thenReturn(InvoiceResultModel.builder().InvoicedOrderId(1L).build());
 
         InvoiceRequestDto invoiceRequestDto = InvoiceRequestDto.builder().invoiceTitle("李四").email("lisi@163.com").build();
-
         String requestJson = objectMapper.writeValueAsString(invoiceRequestDto);
 
 
@@ -107,11 +102,9 @@ class OrderControllerTest extends TestBase {
 
     @Test
     public void should_invoice_failed_given_order_not_exist() throws Exception {
-        Mockito.when(orderService.invoice(any()))
-                .thenThrow(new OrderNotFoundException());
+        Mockito.when(orderService.invoice(any())).thenThrow(new OrderNotFoundException());
 
         InvoiceRequestDto invoiceRequestDto = InvoiceRequestDto.builder().invoiceTitle("李四").email("lisi@163.com").build();
-
         String requestJson = objectMapper.writeValueAsString(invoiceRequestDto);
 
 
@@ -129,7 +122,6 @@ class OrderControllerTest extends TestBase {
                 .thenThrow(new MessageServiceNotAvailableException());
 
         InvoiceRequestDto invoiceRequestDto = InvoiceRequestDto.builder().invoiceTitle("李四").email("lisi@163.com").build();
-
         String requestJson = objectMapper.writeValueAsString(invoiceRequestDto);
 
 

@@ -24,7 +24,6 @@ import java.sql.SQLException;
 @Rollback
 @AutoConfigureMockMvc
 public class TestBase {
-	protected static final String RESPONSE_STATUS_ENUM_SUCCESS = "SUCCESS";
 	private static Logger log = LoggerFactory.getLogger(TestBase.class);
 
 	@Autowired
@@ -43,7 +42,7 @@ public class TestBase {
 	protected void setUp() {
 		this.prepareGlobalConfiguration();
 		try {
-			truncateDatabaseService.restartIdWith(1, true, null);
+			truncateDatabaseService.resetDb( true, null);
 		} catch (SQLException e) {
 			log.info(e.getStackTrace().toString());
 		} finally {

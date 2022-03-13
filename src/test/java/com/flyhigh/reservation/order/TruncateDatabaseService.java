@@ -34,7 +34,7 @@ public class TruncateDatabaseService {
     private Connection connection;
 
     @Transactional
-    public void restartIdWith(int startId, boolean truncate, List<String> tables) throws SQLException {
+    public void resetDb(boolean truncate, List<String> tables) throws SQLException {
 
         List<String> tableNames = new ArrayList<>(tables == null ? emptyList() : tables);
         connection = dataSource.getConnection();

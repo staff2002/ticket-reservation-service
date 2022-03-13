@@ -117,12 +117,15 @@ public class OrderServiceTest extends TestBase {
 
         when(orderRepository.saveAndFlush(any())).thenReturn(OrderEntity.builder()
                 .id(1L)
-                .flightId(1L).flightStatus(FlightStatus.NORMAL).status(OrderStatus.INVOICING).userId(1L).createdAt(new Date()).build());
+                .flightId(1L)
+                .flightStatus(FlightStatus.NORMAL)
+                .status(OrderStatus.INVOICING)
+                .userId(1L)
+                .createdAt(new Date()).build());
 
         when(invoiceMessageSender.send(any())).thenReturn(true);
 
         InvoiceModel invoiceModel  = InvoiceModel.builder().orderId(1L).title("李四").email("lisi@163.com").build();
-
         InvoiceResultModel invoiceResultModel = orderService.invoice(invoiceModel);
 
         assertEquals(1L,invoiceResultModel.getInvoicedOrderId());

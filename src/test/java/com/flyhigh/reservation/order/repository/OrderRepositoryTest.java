@@ -25,9 +25,7 @@ public class OrderRepositoryTest extends TestBase {
                 .flightStatus(FlightStatus.CHANGED)
                 .createdAt(new Date())
                 .build();
-
         OrderEntity savedOrder = orderRepository.save(order);
-
 
         assertNotNull(savedOrder);
         assertEquals(1L, savedOrder.getFlightId());
@@ -45,7 +43,6 @@ public class OrderRepositoryTest extends TestBase {
                 .flightStatus(FlightStatus.CHANGED)
                 .createdAt(new Date())
                 .build();
-
         orderRepository.save(order);
 
         order.setStatus(OrderStatus.INVOICING);
@@ -60,6 +57,7 @@ public class OrderRepositoryTest extends TestBase {
     @Test
     public void should_return_empty_given_no_matched_order(){
         Optional<OrderEntity> orderOptional= orderRepository.findById(1L);
+
         assertTrue(!orderOptional.isPresent());
     }
 }
