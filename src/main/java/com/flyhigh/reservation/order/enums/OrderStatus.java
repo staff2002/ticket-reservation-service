@@ -4,6 +4,6 @@ public enum OrderStatus {
     SUBMITTED,
     PAYMENT_CONFIRMED,
     INVOICING,
-    INVOICED,
+    INVOICED
 }
 

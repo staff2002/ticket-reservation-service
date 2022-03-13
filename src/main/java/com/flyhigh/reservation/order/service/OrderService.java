@@ -57,7 +57,7 @@ public class OrderService {
 
         InvoiceMessage invoiceMessage = getInvoiceMessage(invoiceModel, order);
 
-        if(!invoiceMessageSender.send(invoiceMessage)){
+        if (!invoiceMessageSender.send(invoiceMessage)) {
             throw new MessageServiceNotAvailableException();
         }
 

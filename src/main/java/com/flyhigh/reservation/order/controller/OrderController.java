@@ -34,20 +34,19 @@ public class OrderController {
                 .originalFlightId(flightId)
                 .targetFlightId(request.getTargetFlightId())
                 .build();
-
         try {
             orderService.change(flightChangeModel);
             return new ResponseEntity<>(ResultResponseDto.builder().build(), HttpStatus.OK);
         } catch (TimeoutException e) {
-            return getErrorResponseEntity("SYSTEM_IS_UNAVAILABLE","改签失败",HttpStatus.SERVICE_UNAVAILABLE);
+            return getErrorResponseEntity("SYSTEM_IS_UNAVAILABLE", "改签失败", HttpStatus.SERVICE_UNAVAILABLE);
         } catch (NotEnoughSeatException e) {
-            return getErrorResponseEntity("NO_SEAT","没有足够座位，改签失败",HttpStatus.CONFLICT);
+            return getErrorResponseEntity("NO_SEAT", "没有足够座位，改签失败", HttpStatus.CONFLICT);
         }
 
     }
 
     @PostMapping("/{id}/invoice")
-    public ResponseEntity<ResultResponseDto> invoice(@PathVariable Long id, @RequestBody InvoiceRequestDto request){
+    public ResponseEntity<ResultResponseDto> invoice(@PathVariable Long id, @RequestBody InvoiceRequestDto request) {
 
         InvoiceModel invoiceModel = InvoiceModel.builder()
                 .orderId(id)
@@ -57,10 +56,10 @@ public class OrderController {
         try {
             orderService.invoice(invoiceModel);
             return new ResponseEntity<>(ResultResponseDto.builder().build(), HttpStatus.OK);
-        }catch(OrderNotFoundException e){
-            return getErrorResponseEntity("ORDER_NOT_FOUND","找不到该订单，申请开票失败",HttpStatus.CONFLICT);
-        }catch(MessageServiceNotAvailableException e){
-            return getErrorResponseEntity("SYSTEM_IS_UNAVAILABLE","申请开票失败",HttpStatus.CONFLICT);
+        } catch (OrderNotFoundException e) {
+            return getErrorResponseEntity("ORDER_NOT_FOUND", "找不到该订单，申请开票失败", HttpStatus.CONFLICT);
+        } catch (MessageServiceNotAvailableException e) {
+            return getErrorResponseEntity("SYSTEM_IS_UNAVAILABLE", "申请开票失败", HttpStatus.CONFLICT);
         }
     }
 
