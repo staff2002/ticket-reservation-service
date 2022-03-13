@@ -38,7 +38,7 @@ public class OrderController {
             orderService.change(flightChangeModel);
             return new ResponseEntity<>(ResultResponseDto.builder().build(), HttpStatus.OK);
         } catch (TimeoutException e) {
-            return getErrorResponseEntity("SYSTEM_IS_UNAVAILABLE", "改签失败", HttpStatus.SERVICE_UNAVAILABLE);
+            return getErrorResponseEntity("SYSTEM_IS_UNAVAILABLE", "改签失败", HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (NotEnoughSeatException e) {
             return getErrorResponseEntity("NO_SEAT", "没有足够座位，改签失败", HttpStatus.CONFLICT);
         }
@@ -59,7 +59,7 @@ public class OrderController {
         } catch (OrderNotFoundException e) {
             return getErrorResponseEntity("ORDER_NOT_FOUND", "找不到该订单，申请开票失败", HttpStatus.CONFLICT);
         } catch (MessageServiceNotAvailableException e) {
-            return getErrorResponseEntity("SYSTEM_IS_UNAVAILABLE", "申请开票失败", HttpStatus.CONFLICT);
+            return getErrorResponseEntity("SYSTEM_IS_UNAVAILABLE", "申请开票失败", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

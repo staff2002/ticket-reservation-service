@@ -84,7 +84,7 @@ class OrderControllerTest extends TestBase {
         mockMvc.perform(post("/orders/1/flights/1/change")
                         .content(requestJson)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isServiceUnavailable())
+                .andExpect(status().isInternalServerError())
                 .andExpect(jsonPath("$.errorCode", is("SYSTEM_IS_UNAVAILABLE")))
                 .andExpect(jsonPath("$.message", is("改签失败")));;
     }
@@ -136,7 +136,7 @@ class OrderControllerTest extends TestBase {
         mockMvc.perform(post("/orders/1/invoice")
                         .content(requestJson)
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isConflict())
+                .andExpect(status().isInternalServerError())
                 .andExpect(jsonPath("$.errorCode", is("SYSTEM_IS_UNAVAILABLE")))
                 .andExpect(jsonPath("$.message", is("申请开票失败")));
     }
