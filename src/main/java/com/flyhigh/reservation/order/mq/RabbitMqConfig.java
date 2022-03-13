@@ -11,13 +11,11 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMqConfig {
 
 
-    public static final String EXCHANGE_NAME = "order-ticket-excahnge";
+    public static final String EXCHANGE_NAME = "order-flight-exchange";
 
+    public static final String ROUNTING_KEY = "order-flight-rounting-key";
 
-    public static final String ROUNTING_KEY = "order-ticket-rounting-key";
-
-
-    public static final String QUEUE_NAME = "order-ticket-queue";
+    public static final String QUEUE_NAME = "order-flight-queue";
 
 
     @Bean
